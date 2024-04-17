@@ -1,0 +1,84 @@
+
+<div class="container mt-4">
+    <div class="card example-card" style="width: 50rem">
+      <div class="card-body">
+        <h5 class="card-title text-center m-2">BG2 Test File Upload</h5>
+        <form [formGroup]="dropdownForm">
+          <div class="d-flex justify-content-center mt-4">
+            <div class="p-2">
+              <mat-form-field appearance="outline">
+                <mat-label>Application</mat-label>
+                <mat-select
+                  disableRipple
+                  formControlName="application"
+                  [(ngModel)]="selectedApplication"
+                  (valueChange)="selectEnvironments()"
+                 
+                >
+                  <mat-option value="">Select</mat-option>
+                  <mat-option
+                    *ngFor="let application of applications"
+                    [value]="application.id"
+                    [attr.data-country-name]="application.appName"
+                    >{{ application.appName }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="p-2">
+              <mat-form-field appearance="outline">
+                <mat-label>Environment</mat-label>
+                <mat-select
+                  disableRipple
+                  formControlName="environment"
+                  [(ngModel)]="selectedEnvironment"
+                  (valueChange)="selectServers($event)"
+                 
+                >
+                  <mat-option value="">Select</mat-option>
+                  <mat-option
+                    *ngFor="let environment of environments"
+                    [value]="environment.id"
+                    [attr.data-state-name]="environment.envName"
+                    >{{ environment.envName }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+           
+            <div class="p-2">
+              <mat-form-field appearance="outline">
+                <mat-label>Servers</mat-label>
+                <mat-select [formControl]="serverNames" multiple  
+                [(ngModel)]="selectedServers"
+              >
+                  <div *ngFor="let server of servers" >
+                    
+                    <mat-option [value]="server.id">{{server.serverName}}</mat-option>
+ 
+                  </div>
+  
+                </mat-select>
+              </mat-form-field>
+  
+  
+            </div>
+          </div>
+  
+          <div class="d-flex justify-content-center mt-4">
+            <div class="p-2">
+                  <input (change)="this.onChange($event)" class="form-control" type="file"  id="formFile">
+                  <button (click)="this.upload()" type="button" class="btn btn-primary mt-3">Upload</button>
+               
+            </div>
+           </div>
+  
+        </form>
+      </div>
+    </div>
+    
+   
+  
+  
+  </div>
+  
