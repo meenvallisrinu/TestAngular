@@ -1,0 +1,34 @@
+<div>
+    <label for="gender">Select Gender:</label>
+    <select id="gender" [(ngModel)]="selectedGender" (change)="filterData()">
+      <option value="all">All</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+  </div>
+  <div>
+    <label for="age">Select Age Group:</label>
+    <select id="age" [(ngModel)]="selectedAgeGroup" (change)="filterData()">
+      <option value="all">All</option>
+      <option value="young">Young</option>
+      <option value="middle">Middle-aged</option>
+      <option value="old">Old</option>
+    </select>
+  </div>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let person of filteredPeople">
+        <td>{{ person.name }}</td>
+        <td>{{ person.age }}</td>
+        <td>{{ person.gender }}</td>
+      </tr>
+    </tbody>
+  </table>
